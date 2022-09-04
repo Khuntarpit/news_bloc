@@ -1,5 +1,8 @@
 # news_bloc
 
+Video url : 
+https://github.com/Khuntarpit/news_bloc/blob/main/Record_2022-09-04-22-45-17.mp4
+
 A new Flutter project.
 
 ## Getting Started
