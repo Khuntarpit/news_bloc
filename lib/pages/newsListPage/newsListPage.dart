@@ -37,7 +37,7 @@ class NewsListPage extends StatelessWidget {
                     CustomText(text: MyStrings.no_internet),
                     SizedBox(height: 2.h),
                     CustomButton(title: MyStrings.retry,onTap: (){
-                      BlocProvider.of<NewsBloc>(context).add(Fetch(type: 'General'));
+                      BlocProvider.of<NewsBloc>(context).add(Fetch(type: MyStrings.general));
                     }),
                   ],
                 ),
