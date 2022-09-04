@@ -2,12 +2,12 @@ import 'dart:async';
 import 'dart:developer';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_bloc/Utils/utils.dart';
-import 'package:news_bloc/services/repository.dart';
+import 'package:news_bloc/services/news_repository.dart';
 import 'newsEvent.dart';
 import 'newsState.dart';
 
 class NewsBloc extends Bloc<NewsEvent, NewsState> {
-  final Repository repository;
+  final NewsRepository repository;
 
   NewsBloc({required this.repository}) : super(Loading()){
     on<NewsEvent>(_onPostFetched);

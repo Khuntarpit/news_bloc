@@ -3,12 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:news_bloc/pages/newsListPage/bloc/bloc.dart';
-import 'package:news_bloc/services/repository.dart';
+import 'package:news_bloc/services/news_repository.dart';
 import 'package:news_bloc/route/Routes.dart';
 import 'package:news_bloc/simple_bloc_delegate.dart';
 import 'package:news_bloc/theme/bloc/theme_bloc.dart';
 import 'package:news_bloc/theme/bloc/theme_state.dart';
 import 'package:news_bloc/theme/theme.dart';
+import 'package:news_bloc/utils/myStrings.dart';
 import 'package:sizer/sizer.dart';
 
 import 'pages/newsDetailPage/bloc/detail_bloc.dart';
@@ -40,9 +41,8 @@ class _MyAppState extends State<MyApp> {
           ThemeData? apptheme;
           return MultiBlocProvider(
             providers: [
-              BlocProvider<NewsBloc>(
-                create: (context) =>
-                NewsBloc(repository: Repository())..add(Fetch(type: 'General')),
+              BlocProvider<NewsBloc>(create: (context) =>
+                NewsBloc(repository: NewsRepository())..add(Fetch(type: MyStrings.general)),
               ),
               BlocProvider<DetailBloc>(create: (context) => DetailBloc()),
               BlocProvider<ThemeBloc>(create: (context) => ThemeBloc()),

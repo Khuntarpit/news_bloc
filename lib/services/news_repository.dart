@@ -3,7 +3,7 @@ import 'package:news_bloc/models/NewsApiResonse/article.dart';
 import 'package:news_bloc/services/http_service.dart';
 import 'package:news_bloc/utils/AppUrls.dart';
 
-class Repository {
+class NewsRepository {
   HttpService httpService = HttpService();
 
   Future<List<Article>> fetchAllNews({String category = ''}) async {
