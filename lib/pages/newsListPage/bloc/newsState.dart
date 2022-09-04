@@ -24,3 +24,5 @@ class Loaded extends NewsState {
 }
 
 class Failure extends NewsState {}
+
+class NoInternet extends NewsState {}

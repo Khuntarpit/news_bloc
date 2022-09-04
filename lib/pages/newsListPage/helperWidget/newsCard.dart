@@ -23,7 +23,7 @@ class NewsCard extends StatelessWidget {
         Navigator.pushNamed(context, Routes.newsDetailPage);
       },
       child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 5.w),
+        padding: EdgeInsets.symmetric(horizontal: 4.w),
         margin: EdgeInsets.symmetric(vertical: 2.w),
         height: 16.h,
         width: MediaQuery.of(context).size.width,

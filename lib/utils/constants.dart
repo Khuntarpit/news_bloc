@@ -11,3 +11,7 @@ void printLog(String val){
 void printErrorLog(String val){
   if(DEBUG) logger.e(val);
 }
+
+bool checkResponse(int? code){
+  return code == 200 ? true : false;
+}

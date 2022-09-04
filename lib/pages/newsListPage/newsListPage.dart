@@ -5,8 +5,10 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:news_bloc/Elements/CustomText.dart';
 import 'package:news_bloc/elements/CustomButton.dart';
 import 'package:news_bloc/models/NewsApiResonse/article.dart';
+import 'package:news_bloc/services/repository.dart';
 import 'package:news_bloc/theme/bloc/bloc.dart';
 import 'package:news_bloc/theme/theme.dart';
+import 'package:news_bloc/utils/myStrings.dart';
 import 'package:sizer/sizer.dart';
 import 'bloc/bloc.dart';
 import 'helperWidget/newsCard.dart';
@@ -28,9 +30,23 @@ class NewsListPage extends StatelessWidget {
             if (state is Failure) {
               return Center(child: CustomText(text: 'Something went wrong'));
             }
+            if (state is NoInternet) {
+              return Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    CustomText(text: MyStrings.no_internet),
+                    SizedBox(height: 2.h),
+                    CustomButton(title: MyStrings.retry,onTap: (){
+                      BlocProvider.of<NewsBloc>(context).add(Fetch(type: 'General'));
+                    }),
+                  ],
+                ),
+              );
+            }
             if (state is Loaded) {
               if (state.items.isEmpty) {
-                return CustomText(text: 'No content avilable');
+                return CustomText(text: MyStrings.no_news_available);
               } else {
                 return _body(context, state.items, type: state.type);
               }
@@ -49,14 +65,14 @@ class NewsListPage extends StatelessWidget {
       scrollDirection: Axis.horizontal,
       child: Row(
         children: [
-          _categoryCard(context,'General', 'general',),
-          _categoryCard(context,'Tech', 'technology',),
+          _categoryCard(context,MyStrings.general, 'general',),
+          _categoryCard(context,MyStrings.tech, 'technology',),
           //  _categoryCard('Fashion','https://thumbs.dreamstime.com/b/abstract-woman-portrait-fashion-background-hand-painted-art-illustration-56110086.jpg'),
-          _categoryCard(context,'Economy', 'business',),
-          _categoryCard(context,'Sport', 'sports',),
-          _categoryCard(context,'Health', 'health',),
-          _categoryCard(context,'Fun', 'entertainment',),
-          _categoryCard(context,'Science', 'science',),
+          _categoryCard(context,MyStrings.economy, 'business',),
+          _categoryCard(context,MyStrings.sport, 'sports',),
+          _categoryCard(context,MyStrings.health, 'health',),
+          _categoryCard(context,MyStrings.entertainment, 'entertainment',),
+          _categoryCard(context,MyStrings.science, 'science',),
         ],
       ),
     );

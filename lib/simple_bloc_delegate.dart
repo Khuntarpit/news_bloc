@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:news_bloc/Utils/Constants.dart';
+import 'package:news_bloc/Utils/constants.dart';
 
 class SimpleBlocObserver extends BlocObserver {
   @override

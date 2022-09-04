@@ -1,8 +1,9 @@
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:news_bloc/pages/newsListPage/bloc/bloc.dart';
-import 'package:news_bloc/resources/repository.dart';
+import 'package:news_bloc/services/repository.dart';
 import 'package:news_bloc/route/Routes.dart';
 import 'package:news_bloc/simple_bloc_delegate.dart';
 import 'package:news_bloc/theme/bloc/theme_bloc.dart';
@@ -44,7 +45,6 @@ class _MyAppState extends State<MyApp> {
                 NewsBloc(repository: Repository())..add(Fetch(type: 'General')),
               ),
               BlocProvider<DetailBloc>(create: (context) => DetailBloc()),
-              // BlocProvider<NavigationBloc>(create: (context) => NavigationBloc()),
               BlocProvider<ThemeBloc>(create: (context) => ThemeBloc()),
             ],
             child: BlocBuilder<ThemeBloc, ThemeState>(
@@ -57,7 +57,7 @@ class _MyAppState extends State<MyApp> {
                 return Builder(
                   builder: (context) {
                     return MaterialApp(
-                      title: 'Flutter Demo',
+                      title: 'News Bloc',
                       theme: apptheme,
                       debugShowCheckedModeBanner: false,
                       routes: Routes.getRoute(),

@@ -5,11 +5,33 @@ import 'package:news_bloc/models/NewsApiResonse/article.dart';
 import 'package:news_bloc/pages/newsListPage/bloc/bloc.dart';
 import 'package:news_bloc/theme/color/lightColor.dart';
 import 'package:news_bloc/utils/extenstions.dart';
+import 'package:news_bloc/utils/myStrings.dart';
 import 'package:sizer/sizer.dart';
 import 'bloc/bloc.dart';
 
 class NewsDetailPage extends StatelessWidget {
   const NewsDetailPage({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        backgroundColor: Theme.of(context).backgroundColor,
+        body: SafeArea(child: BlocBuilder<DetailBloc, DetailState>(
+          builder: (context, state) {
+            if (state is Failure) {
+              return Center(child: CustomText(text: MyStrings.something_wrong));
+            }
+            if (state is LoadedArticle) {
+              return _body(
+                context,
+                state.selectedArticle,
+              );
+            } else {
+              return const Center(child: CircularProgressIndicator());
+            }
+          },
+        )));
+  }
 
   Widget _headerNews(BuildContext context, Article article) {
     return Stack(
@@ -56,6 +78,7 @@ class NewsDetailPage extends StatelessWidget {
       ],
     );
   }
+
   Widget _body(BuildContext context, Article article) {
     return CustomScrollView(
       slivers: <Widget>[
@@ -64,47 +87,27 @@ class NewsDetailPage extends StatelessWidget {
         ),
         SliverToBoxAdapter(
             child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 5.w),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              SizedBox(height: 1.h),
-              CustomText(text: article.title,fontSize: 20.sp,fontWeight: FontWeight.bold),
-              SizedBox(height: 1.h,),
-              Row(
+              padding: EdgeInsets.symmetric(horizontal: 5.w),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  CustomText(text: article.author),
-                  SizedBox(width: 3.w,),
-                  CustomText(text: article.publishedAt == null ? "" : article.publishedAt!.dayFormat.toString(),),
+                  SizedBox(height: 1.h),
+                  CustomText(text: article.title,fontSize: 20.sp,fontWeight: FontWeight.bold),
+                  SizedBox(height: 1.h,),
+                  Row(
+                    children: <Widget>[
+                      CustomText(text: article.author),
+                      SizedBox(width: 3.w,),
+                      CustomText(text: article.publishedAt == null ? "" : article.publishedAt!.dayFormat.toString(),),
+                    ],
+                  ),
+                  Divider(height: 3.h, thickness: 1,),
+                  CustomText(text: article.content,fontSize: 18.sp,)
                 ],
               ),
-              Divider(height: 3.h, thickness: 1,),
-              CustomText(text: article.content,fontSize: 18.sp,)
-            ],
-          ),
-        ))
+            ))
       ],
     );
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-        backgroundColor: Theme.of(context).backgroundColor,
-        body: SafeArea(child: BlocBuilder<DetailBloc, DetailState>(
-          builder: (context, state) {
-            if (state is Failure) {
-              return Center(child: CustomText(text: 'Something went wrong'));
-            }
-            if (state is LoadedArticle) {
-              return _body(
-                context,
-                state.selectedArticle,
-              );
-            } else {
-              return const Center(child: CircularProgressIndicator());
-            }
-          },
-        )));
-  }
 }

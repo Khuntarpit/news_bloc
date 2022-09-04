@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:news_bloc/pages/newsListPage/homePage.dart';
+import 'package:news_bloc/pages/newsListPage/newsListPage.dart';
 import 'package:news_bloc/pages/newsDetailPage/newsDetailPage.dart';
 
 abstract class Routes{
