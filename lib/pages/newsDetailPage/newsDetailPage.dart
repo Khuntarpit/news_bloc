@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_bloc/Elements/CustomText.dart';
-import 'package:news_bloc/models/NewsApiResonse/article.dart';
+import 'package:news_bloc/models/article/article.dart';
 import 'package:news_bloc/pages/newsListPage/bloc/bloc.dart';
 import 'package:news_bloc/theme/color/lightColor.dart';
 import 'package:news_bloc/utils/extenstions.dart';

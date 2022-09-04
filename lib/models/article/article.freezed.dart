@@ -236,14 +236,14 @@ class _$_Article with DiagnosticableTreeMixin implements _Article {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'NewsApiResonse(source: $source, author: $author, title: $title, description: $description, url: $url, urlToImage: $urlToImage, publishedAt: $publishedAt, content: $content)';
+    return 'article(source: $source, author: $author, title: $title, description: $description, url: $url, urlToImage: $urlToImage, publishedAt: $publishedAt, content: $content)';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-      ..add(DiagnosticsProperty('type', 'NewsApiResonse'))
+      ..add(DiagnosticsProperty('type', 'article'))
       ..add(DiagnosticsProperty('source', source))
       ..add(DiagnosticsProperty('author', author))
       ..add(DiagnosticsProperty('title', title))

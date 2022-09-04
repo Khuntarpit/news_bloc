@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:news_bloc/models/NewsApiResonse/article.dart';
+import 'package:news_bloc/models/article/article.dart';
 
 abstract class NewsState extends Equatable {
   const NewsState();
