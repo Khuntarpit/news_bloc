@@ -14,8 +14,7 @@ class NewsApiProvider {
       List<Article> articles = List<Article>.from(response.data["articles"].map((x) => Article.fromJson(x)));
       return articles;
     } else {
-      // If that call was not successful, throw an error.
-      throw Exception('Failed to load post');
+      return [];
     }
   }
 }

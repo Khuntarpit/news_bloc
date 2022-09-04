@@ -41,7 +41,7 @@ class NewsDetailPage extends StatelessWidget {
           tag: 'headerImage',
           child: article.urlToImage.isEmpty
               ? Container()
-              : Image.network(article.urlToImage,fit: BoxFit.cover,),
+              : Image.network(article.urlToImage,fit: BoxFit.cover,width: MediaQuery.of(context).size.width,),
         ),
         Container(
           padding: EdgeInsets.only(left: 0, right: 3.w, bottom: 6.w),
